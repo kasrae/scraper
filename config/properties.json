@@ -1,0 +1,5 @@
+{
+    "dbConnectionString": "AQICAHhOLTuYsJWti29MKZ5gh+HyAYvPHw6m8K5uNg2ErtqhwwHcpdN8tLpUUXMnOBaXbnWKAAAAyTCBxgYJKoZIhvcNAQcGoIG4MIG1AgEAMIGvBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDAeUI5D+J1TBk5rPjQIBEICBgYlTNe2dOeGG5G4DmdDMFq4luldIX4faU0aXexQNtSil4Ppoqi0toam2lnw3aazjh4k8IKfFkUPTxp8gQpzoaQM3zUCne0UskNC/Ni1yQUtuSNcq4s0TIrPCdzsydULrCe3DdZDr31dbDpw50uR3skNBNZpbDdPPZ32g1CPvr634LQ==",
+    "Scrape_URL": "https://news.ycombinator.com/newest",
+    "kmsKey": "97b16395-298e-42dd-aa13-ac4cfa5fd9d5"
+}
