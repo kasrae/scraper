@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/kasrae/scraper#readme",
   "dependencies": {
+    "aws-sdk": "^2.683.0",
     "axios": "^0.19.2",
+    "bluebird": "^3.7.2",
     "cheerio": "^1.0.0-rc.3",
     "pg": "^8.2.1"
   }
