@@ -10,7 +10,7 @@ function loadProperties() {
     return JSON.parse(fs.readFileSync('./config/properties.json', 'utf8'));
 }
 
-// Scrape first page of hacker news url and store link and url into hackernewsitem table
+// Scrape first page of hacker news url and store link and title into hackernewsitem table
 async function scrapeAndStore(url, dbClient) {
     let html, metadata;
     try {
