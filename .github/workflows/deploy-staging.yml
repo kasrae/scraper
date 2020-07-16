@@ -53,7 +53,7 @@ jobs:
             --application-name Scraper
             --description "This is a revision for the api-server"
             --ignore-hidden-files
-            --s3-location s3://codedeploy-kaz/functioncode/dummy.txt
+            --s3-location s3://codedeploy-kaz/functioncode/dummy.zip
             --source .
       # - name: Upload to S3
       #   uses: zdurham/s3-upload-github-action@master
@@ -79,4 +79,4 @@ jobs:
             --deployment-config-name CodeDeployDefault.OneAtATime
             --deployment-group-name Sample
             --file-exists-behavior OVERWRITE
-            --s3-location bucket=codedeploy-kaz,key=functioncode/dummy.txt,bundleType=tgz
+            --s3-location bucket=codedeploy-kaz,key=functioncode/dummy.zip,bundleType=zip

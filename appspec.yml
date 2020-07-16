@@ -1,5 +1,5 @@
 version: 0.0
 os: linux
 files:
-  - source: ./dummy.txt
+  - source: ./dummy.zip
     destination: /scrap
