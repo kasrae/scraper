@@ -1,5 +1,5 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /
+  - source: scraper.tar.gz
+    destination: /scrap

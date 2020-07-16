@@ -50,7 +50,7 @@ jobs:
         with:
           args: >-
             deploy push
-            --application-name api-server
+            --application-name Scraper
             --description "This is a revision for the api-server"
             --ignore-hidden-files
             --s3-location s3://codedeploy-kaz/functioncode/${{env.S3Key}}
@@ -71,11 +71,11 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: "us-east-2"
+          AWS_DEFAULT_REGION: "us-east-1"
         with:
           args: >-
             deploy create-deployment
-            --application-name api-server
+            --application-name Scraper
             --deployment-config-name CodeDeployDefault.OneAtATime
             --deployment-group-name Sample
             --file-exists-behavior OVERWRITE
