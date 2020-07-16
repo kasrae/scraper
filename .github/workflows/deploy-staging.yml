@@ -1,0 +1,33 @@
+name: Staging deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compress action step
+        uses: master-atul/tar-action@v1.0.2
+        id: compress
+        with:
+          command: c
+          cwd: ./
+          files: |
+            ./
+          outPath: scraper.tar.gz
+      - name: Get the output
+        run: echo "The output was ${{ steps.compress.outputs.done }}"
+      - uses: actions/upload-artifact@v1
+        with:
+          name: scraper.tar.gz
+          path: scraper.tar.gz
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: './scraper.tar.gz'
