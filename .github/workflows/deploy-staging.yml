@@ -49,6 +49,6 @@ jobs:
           FILE: scraper.tar.gz
           AWS_REGION: 'us-east-1'
           S3_BUCKET: ${{ secrets.AWS_BUCKET }}
-          S3_KEY: $S3Key
+          S3_KEY: ${{ env.S3Key }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
