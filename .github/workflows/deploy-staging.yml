@@ -41,14 +41,42 @@ jobs:
           S3Key: "${{ steps.time.outputs.time }}-scraper.tar.gz"
         run: |
           echo $S3Key
-      - name: Upload to S3
-        uses: zdurham/s3-upload-github-action@master
-        with:
-          args: --acl public-read
+      - name: AWS Deploy push
+        uses: ItsKarma/aws-cli@v1.70.0
         env:
-          FILE: scraper.tar.gz
-          AWS_REGION: 'us-east-1'
-          S3_BUCKET: ${{ secrets.AWS_BUCKET }}
-          S3_KEY: ${{ env.S3Key }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-1"
+        with:
+          args: >-
+            deploy push
+            --application-name api-server
+            --description "This is a revision for the api-server"
+            --ignore-hidden-files
+            --s3-location s3://codedeploy-kaz/functioncode/${{env.S3Key}}
+            --source scraper.tar.gz
+      # - name: Upload to S3
+      #   uses: zdurham/s3-upload-github-action@master
+      #   with:
+      #     args: --acl public-read
+      #   env:
+      #     FILE: scraper.tar.gz
+      #     AWS_REGION: 'us-east-1'
+      #     S3_BUCKET: ${{ secrets.AWS_BUCKET }}
+      #     S3_KEY: ${{ env.S3Key }}
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: AWS Create Deploy
+        uses: ItsKarma/aws-cli@v1.70.0
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "us-east-2"
+        with:
+          args: >-
+            deploy create-deployment
+            --application-name api-server
+            --deployment-config-name CodeDeployDefault.OneAtATime
+            --deployment-group-name Sample
+            --file-exists-behavior OVERWRITE
+            --s3-location bucket=codedeploy-kaz,key=functioncode/${{ env.S3Key }},bundleType=tgz
