@@ -21,12 +21,12 @@ jobs:
           outPath: scraper.tar.gz
       - name: Get the output
         run: echo "The output was ${{ steps.compress.outputs.done }}"
-      - Upload the artifact
+      - name: Upload the artifact
         uses: actions/upload-artifact@v1
         with:
           name: scraper.tar.gz
           path: scraper.tar.gz
-      - Download to the runner
+      - name: Download to the runner
         uses: actions/download-artifact@v2
         with:
           name: scraper.tar.gz
@@ -41,7 +41,8 @@ jobs:
           S3Key: "${{ steps.time.outputs.time }}-scraper.tar.gz"
         run: |
           echo $S3Key
-      - uses: zdurham/s3-upload-github-action@master
+      - name: Upload to S3
+        uses: zdurham/s3-upload-github-action@master
         with:
           args: --acl public-read
         env:
