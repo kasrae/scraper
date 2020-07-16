@@ -25,9 +25,13 @@ jobs:
         with:
           name: scraper.tar.gz
           path: scraper.tar.gz
+      - uses: actions/download-artifact@v2
+        with:
+          name: scraper.tar.gz
       - uses: shallwefootball/s3-upload-action@master
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: ${{ secrets.AWS_BUCKET }}
+          destination_dir: ${{ secrets.AWS_BUCKET_KEY }}
           source_dir: './scraper.tar.gz'
