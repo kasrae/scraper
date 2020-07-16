@@ -54,7 +54,7 @@ jobs:
             --description "This is a revision for the api-server"
             --ignore-hidden-files
             --s3-location s3://codedeploy-kaz/functioncode/${{env.S3Key}}
-            --source scraper.tar.gz
+            --source .
       # - name: Upload to S3
       #   uses: zdurham/s3-upload-github-action@master
       #   with:
@@ -79,4 +79,4 @@ jobs:
             --deployment-config-name CodeDeployDefault.OneAtATime
             --deployment-group-name Sample
             --file-exists-behavior OVERWRITE
-            --s3-location bucket=codedeploy-kaz,key=functioncode/${{ env.S3Key }},bundleType=tgz
+            --s3-location bucket=codedeploy-kaz,key=functioncode/scraper.tar.gz,bundleType=tgz
